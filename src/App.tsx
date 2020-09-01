@@ -1,30 +1,12 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
-import SideBar from './components/Sidebar';
-import AppBreadCrumb from './components/BreadCrumb';
-import AppFooter from './components/Footer';
-import AppHeader from './components/Header';
-
-const {  Content } = Layout;
+import { withRouter } from "react-router-dom"
+import Routers from "./router/index"
 function App() {
   return (
     <>
-      <Layout style={{ minHeight: '100vh' }}>
-       <SideBar/>
-        <Layout className="site-layout">
-          <AppHeader />
-          <Content style={{ margin: '0 16px' }}>
-          <AppBreadCrumb />
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
-            </div>
-          </Content>
-          <AppFooter />
-        </Layout>
-      </Layout>
-
+      <Routers />
     </>
   );
 }
 
-export default App;
+export default App

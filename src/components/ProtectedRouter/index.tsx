@@ -1,28 +1,19 @@
-import * as React from 'react';
-import { Redirect, Route, RouteProps } from 'react-router';
+import {Redirect, Route} from "react-router-dom";
+import React, {useContext, useEffect} from "react";
 
-export interface ProtectedRouteProps extends RouteProps {
-  isAuthenticated: boolean;
-  isAllowed: boolean;
-  restrictedPath: string;
-  authenticationPath: string;
+const ProtectedRoute = ({component: Component, ...rest}:any) => {
+  
+    return (
+        <Route {...rest} render={(props) => {
+            return (3>1 === true ? <Component {...props}/> : <Redirect
+                to={{
+                    pathname: "/login",
+                }}
+            />)
+        }
+        }>
+        </Route>
+    )
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = props => {
-  let redirectPath = '';
-  if (!props.isAuthenticated) {
-    redirectPath = props.authenticationPath;
-  }
-  if (props.isAuthenticated && !props.isAllowed) {
-    redirectPath = props.restrictedPath;
-  }
-
-  if (redirectPath) {
-    const renderComponent = () => <Redirect to={{ pathname: redirectPath }} />;
-    return <Route {...props} component={renderComponent} render={undefined} />;
-  } else {
-    return <Route {...props} />;
-  }
-};
-
-export default ProtectedRoute;
+export default React.memo(ProtectedRoute);

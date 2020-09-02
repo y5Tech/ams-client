@@ -1,0 +1,3 @@
+interface Build{
+    name:string
+}

@@ -5,7 +5,7 @@ import { Layout, Tabs } from 'antd';
 import { Menu } from 'antd';
 import HeaderDropdown from "../HeaderDropdown";
 import { DownOutlined } from '@ant-design/icons';
-import { Helmet } from "react-helmet";
+
 const { Header } = Layout;
 const { TabPane } = Tabs;
 
@@ -39,11 +39,7 @@ const menu = (
 const AppHeader = () => {
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>My Title</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
+   
       <Header className="site-layout-background" style={{ padding: 0 }} >
         <div className={"header-wrapper"}>
           <div className="header-left">

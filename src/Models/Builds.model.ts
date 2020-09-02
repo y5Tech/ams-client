@@ -1,3 +1,3 @@
-interface Build{
+export interface Build{
     name:string
 }

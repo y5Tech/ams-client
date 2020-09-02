@@ -1,5 +1,5 @@
 import React, { useReducer, useContext, createContext } from "react";
-import reducer from "./reducer";
+import reducer from "./reducers";
 
 // interfaces
 interface IStore {

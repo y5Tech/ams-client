@@ -17,7 +17,7 @@ const SideBar = () => {
     return (
         <Sider collapsible collapsed={collapseSidebar} onCollapse={setCollapseSidebar} >
             <Logo />
-            <AppMenu selectedKeys={['1']} />
+            <AppMenu selectedKeys={["1"]} />
         </Sider>
     )
 }

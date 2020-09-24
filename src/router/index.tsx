@@ -1,37 +1,38 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
-//CustomRoute
 
+//CustomRoute
 import ApplicationRoute from "../components/ApplicationRouter"
 
 
-//Pages
-import Dashboard from "../views/Dashboard"
-import Builds from "../views/Builds"
-import Login from "../views/Login"
-
 
 const Routers = () => {
+    const lazyComponent = (path: string) => {
+        return lazy(() => import(`../views/${path}`))
+    }
     return (
-        <Router>
-            <Switch>
-                <ApplicationRoute
-                    path="/" exact
-                    component={Dashboard}
-                    routeProtection={true}
-                />
-                <ApplicationRoute
-                    path="/builds"
-                    component={Builds}
-                    routeProtection={true}
-                />
+        <Suspense fallback={<div>Yükleniyor..</div>}>
+            <Router>
+                <Switch>
+                    <ApplicationRoute
+                        path="/" exact
+                        component={lazyComponent("Dashboard")}
+                        routeProtection={true}
+                    />
+                    <ApplicationRoute
+                        path="/builds"
+                        component={lazyComponent('Builds')}
+                        routeProtection={true}
+                    />
 
-                <ApplicationRoute path="/login"
-                                  component={Login}
-                                  routeProtection={false}/>
+                    <ApplicationRoute path="/login"
+                                      component={lazyComponent('Login')}
+                                      routeProtection={false}/>
 
-            </Switch>
-        </Router>
+                </Switch>
+            </Router>
+        </Suspense>
+
     )
 }
 

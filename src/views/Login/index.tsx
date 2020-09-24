@@ -1,6 +1,6 @@
 import React from 'react'
 import ApplicationHeader from '../../components/ApplicationHeader'
-
+import withLayout from "../../HOC/withLayout";
 const Login=()=>{
         return(
             <>
@@ -12,4 +12,4 @@ const Login=()=>{
             </>
         )
 }
-export default  Login
+export default  withLayout(React.memo(Login),{protection:false})

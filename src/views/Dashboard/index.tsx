@@ -1,7 +1,6 @@
 import React from "react"
 import ApplicationHeader from "../../components/ApplicationHeader"
-
-
+import withLayout from "../../HOC/withLayout";
 
 const Dashboard = () => {
     return (
@@ -18,4 +17,4 @@ const Dashboard = () => {
     )
 }
 
-export default React.memo(Dashboard)
+export default   withLayout(React.memo(Dashboard),{protection:true})

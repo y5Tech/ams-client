@@ -5,6 +5,7 @@ import {
     FileOutlined,
 } from '@ant-design/icons';
 import RouterModel from "../Models/RouterConst.model";
+import DynamicRouteModel from "../Models/DynamicRoute.model";
 
 const ApplicationRouter: Array<RouterModel> = [
     {
@@ -37,4 +38,26 @@ const ApplicationRouter: Array<RouterModel> = [
         ]
     }
 ]
-export { ApplicationRouter }
+
+
+const DynamicRouter:Array<DynamicRouteModel>=[
+    {
+        exact:true,
+        importPath:"Dashboard",
+        path:"/",
+        routeProtection:true
+    },
+    {
+        exact:true,
+        importPath:"Builds",
+        path:"/builds",
+        routeProtection:true
+    },
+    {
+        exact:true,
+        importPath:"Login",
+        path:"/Login",
+        routeProtection:false
+    }
+]
+export { ApplicationRouter,DynamicRouter }

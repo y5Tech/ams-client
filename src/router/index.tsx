@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Switch} from 'react-router-dom'
 
 //CustomRoute
 import ApplicationRoute from "../components/ApplicationRouter"
+import {DynamicRouter} from "./routerConst";
+import DynamicRouteModel from "../Models/DynamicRoute.model";
 
 
 
@@ -14,7 +16,17 @@ const Routers = () => {
         <Suspense fallback={<div>Yükleniyor..</div>}>
             <Router>
                 <Switch>
-                    <ApplicationRoute
+                    {
+                        DynamicRouter.map((routeItem:DynamicRouteModel,index:number)=>{
+                            return <ApplicationRoute
+                                path={routeItem.path}
+                                exact={routeItem.exact?routeItem.exact:null}
+                                component={lazyComponent(routeItem.importPath)}
+                                routeProtection={routeItem.routeProtection}
+                            />
+                        })
+                    }
+                {/*    <ApplicationRoute
                         path="/" exact
                         component={lazyComponent("Dashboard")}
                         routeProtection={true}
@@ -27,7 +39,7 @@ const Routers = () => {
 
                     <ApplicationRoute path="/login"
                                       component={lazyComponent('Login')}
-                                      routeProtection={false}/>
+                                      routeProtection={false}/>*/}
 
                 </Switch>
             </Router>

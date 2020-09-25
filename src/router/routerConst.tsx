@@ -19,18 +19,18 @@ const ApplicationRouter: Array<RouterModel> = [
         id: 2,
         route: '',
         icon: null,
-        text: "Alt Başlıklı",
+        text: "Tanımlar",
         children: [
             {
                 id: 2.1,
-                icon: <PieChartOutlined />,
-                text: "Sayf 1",
+                icon: <PieChartOutlined/>,
+                text: "Bina Tanımla",
                 children: [],
-                route: '#/realm-settings',
+                route: '/builds',
             },
             {
                 id: 2.2,
-                icon: <FileOutlined />,
+                icon: <FileOutlined/>,
                 text: "Sayf 2",
                 children: [],
                 route: '#/realm-settings',
@@ -40,24 +40,24 @@ const ApplicationRouter: Array<RouterModel> = [
 ]
 
 
-const DynamicRouter:Array<DynamicRouteModel>=[
+const DynamicRouter: Array<DynamicRouteModel> = [
     {
-        exact:true,
-        importPath:"Dashboard",
-        path:"/",
-        routeProtection:true
+        exact: false,
+        importPath: "Builds",
+        path: "/builds",
+        routeProtection: true
     },
+
     {
-        exact:true,
-        importPath:"Builds",
-        path:"/builds",
-        routeProtection:true
+        exact: false,
+        importPath: "Login",
+        path: "/Login",
+        routeProtection: false
+    }, {
+        exact: true,
+        importPath: "Dashboard",
+        path: "/",
+        routeProtection: true
     },
-    {
-        exact:true,
-        importPath:"Login",
-        path:"/Login",
-        routeProtection:false
-    }
 ]
-export { ApplicationRouter,DynamicRouter }
+export {ApplicationRouter, DynamicRouter}

@@ -6,44 +6,47 @@ import ApplicationRoute from "../components/ApplicationRouter"
 import {DynamicRouter} from "./routerConst";
 import DynamicRouteModel from "../Models/DynamicRoute.model";
 
-
+import ApplicationLayout from "../components/Layouts/applicationLayout"
+import LoginLayout from "../components/Layouts/loginLayout"
+import Login from "../views/Login";
 
 const Routers = () => {
     const lazyComponent = (path: string) => {
         return lazy(() => import(`../views/${path}`))
     }
     return (
-        <Suspense fallback={<div>Yükleniyor..</div>}>
-            <Router>
-                <Switch>
-                    {
-                        DynamicRouter.map((routeItem:DynamicRouteModel,index:number)=>{
-                            return <ApplicationRoute
-                                path={routeItem.path}
-                                exact={routeItem.exact?routeItem.exact:null}
-                                component={lazyComponent(routeItem.importPath)}
-                                routeProtection={routeItem.routeProtection}
-                            />
-                        })
-                    }
-                {/*    <ApplicationRoute
-                        path="/" exact
-                        component={lazyComponent("Dashboard")}
-                        routeProtection={true}
-                    />
-                    <ApplicationRoute
-                        path="/builds"
-                        component={lazyComponent('Builds')}
-                        routeProtection={true}
-                    />
+        <Router>
+            <Switch>
+                <ApplicationLayout>
+                    <Suspense fallback={<div>Yükleniyor ...</div>}>
+                        <ApplicationRoute
+                            path="/" exact
+                            layout={ApplicationLayout}
+                            component={lazyComponent('Dashboard')}
+                            routeProtection={true}
+                        />
+                        <ApplicationRoute
+                            path="/builds"
+                            exact={false}
+                            layout={ApplicationLayout}
+                            component={lazyComponent('Builds')}
+                            routeProtection={true}
+                        />
+                    </Suspense>
+                </ApplicationLayout>
+                <LoginLayout>
+                    <Suspense fallback={<div>Yükleniyor ...</div>}>
+                        <ApplicationRoute path="/login"
+                                          layout={LoginLayout}
+                                          component={lazyComponent('Login')}
+                                          routeProtection={false}/>
+                    </Suspense>
+                </LoginLayout>
 
-                    <ApplicationRoute path="/login"
-                                      component={lazyComponent('Login')}
-                                      routeProtection={false}/>*/}
+            </Switch>
 
-                </Switch>
-            </Router>
-        </Suspense>
+        </Router>
+
 
     )
 }

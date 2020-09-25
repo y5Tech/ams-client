@@ -1,7 +1,7 @@
 import React from "react"
 import ApplicationHeader from "../../components/ApplicationHeader"
 import withLayout from "../../HOC/withLayout";
-
+import { Skeleton } from 'antd';
 const Dashboard = () => {
     return (
         <>
@@ -9,6 +9,8 @@ const Dashboard = () => {
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
 
                 Ben bir anasayfayım selam
+
+                <Skeleton loading={true} active  />
         </div>
 
         </>
@@ -17,4 +19,4 @@ const Dashboard = () => {
     )
 }
 
-export default   withLayout(React.memo(Dashboard),{protection:true})
+export  default  React.memo(Dashboard)

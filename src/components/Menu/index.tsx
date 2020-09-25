@@ -4,8 +4,10 @@ import React, { useState } from "react"
 import { Menu } from 'antd';
 import {ApplicationRouter} from "../../router/routerConst"
 import RouterModel from "../../Models/RouterConst.model";
+import {
+    Link,
+} from "react-router-dom";
 const { SubMenu } = Menu;
-
 interface PropTypes {
     selectedKeys?: Array<string>,
     mode?: "inline" | "horizontal" | "vertical" | "vertical-left" | "vertical-right"
@@ -26,7 +28,9 @@ const AppMenu = (props: PropTypes) => {
         } else {
             return (
                 <Menu.Item key={item.id} icon={item.icon}>
-                    {item.text}
+                    <Link to={item.route}>
+                        {item.text}
+                    </Link>
                 </Menu.Item>
             )
         }

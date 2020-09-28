@@ -1,5 +1,5 @@
 import React from "react"
-import './index.css'
+import  './styles.scss'
 import {Layout, Tabs} from 'antd';
 
 import {Menu} from 'antd';
@@ -58,9 +58,9 @@ const AppHeader = () => {
 
                     <div className="header-right">
                         <HeaderDropdown overlay={langMenu({setLanguage: changeLanguage})}>
-                            <div className="header-dropdown-link-container" style={{marginRight: "8px"}}>
-                                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                    {state.locale.toUpperCase()} <DownOutlined/>
+                            <div className="header-dropdown-link-container" style={{marginRight: "16px"}}>
+                                <a className="ant-dropdown-link upperCase" onClick={e => e.preventDefault()}>
+                                    {state.locale} <DownOutlined/>
                                 </a>
                             </div>
                         </HeaderDropdown>
@@ -68,7 +68,7 @@ const AppHeader = () => {
 
                         <HeaderDropdown overlay={menu}>
                             <div className="header-dropdown-link-container">
-                                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                <a className="ant-dropdown-link textCapitalaze" onClick={e => e.preventDefault()}>
                                     Yasin Efem Dalkılıç <DownOutlined/>
                                 </a>
                             </div>

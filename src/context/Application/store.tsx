@@ -24,7 +24,6 @@ const Store = ({children}: any) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const actions: IActions = {
         setLanguage(locale: string): any {
-            debugger
             dispatch({type:SET,locale})
         }
     }

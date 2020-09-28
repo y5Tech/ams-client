@@ -3,8 +3,7 @@ import React, {useEffect, useLayoutEffect, useState} from "react";
 import {useApplicationState} from "../context/Application/store";
 import tr from "./tr";
 import en from "./en";
-import useLocalStorage from "../CustomHooks/useLocalStorage";
-
+import useLocalStorage from "../customHooks/useLocalStorage";
 /* Define your translations */
 
 

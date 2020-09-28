@@ -7,7 +7,7 @@ import HeaderDropdown from "../HeaderDropdown";
 import {DownOutlined} from '@ant-design/icons';
 import {languageOptions} from "../../statics/ApplicationConst";
 import {useApplicationState} from "../../context/Application/store";
-import useLocalStorage from "../../CustomHooks/useLocalStorage";
+import useLocalStorage from "../../customHooks/useLocalStorage";
 
 const {Header} = Layout;
 const {TabPane} = Tabs;

@@ -1,5 +1,5 @@
 import React from "react"
-import withLayout from "../../HOC/withLayout";
+import {FormattedMessage} from 'react-intl';
 import {
     BrowserRouter,
     Switch,
@@ -7,6 +7,7 @@ import {
     useRouteMatch
 } from "react-router-dom";
 import AddBuilds from "./pages/addBuilds";
+import {useApplicationState} from "../../context/Application/store";
 
 const Builds = () => {
     let {path} = useRouteMatch();
@@ -14,10 +15,12 @@ const Builds = () => {
         <>
 
             <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
-                Ben bir binalar sayfasıyım selam
-                {console.log("path",path)}
+                Ben bir binalar sayfasıyım selam  {" "}
+                <FormattedMessage id={"applicationName"}/>
 
-                <Route exact  path={"/builds/add"} render={()=><h1>Ekleeee beniiii</h1>} />
+                <Switch>
+                    <Route exact path={"/builds/add"} component={AddBuilds}/>
+                </Switch>
 
             </div>
 

@@ -13,3 +13,5 @@ export const languageOptions:Array<LanguageMenuOptionsModel>=[
         icon:<TranslationOutlined/>
     }
 ]
+
+export const reactEnv:string="REACT_APP_"

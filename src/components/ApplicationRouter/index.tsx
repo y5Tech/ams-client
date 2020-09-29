@@ -8,7 +8,6 @@ import BallLoading from "../BallLoader";
 const ApplicationRouter = ({component: Component, layout: Layout, ...rest}: any) => {
 
     const lazyComponent = (path: string) => {
-        debugger
         return lazy(() => import(`../../views/${path}`))
     }
     return (

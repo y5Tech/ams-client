@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
 import ApplicationProvider from "./context/Application/store"
 
+
 ReactDOM.render(
     <React.StrictMode>
         <ApplicationProvider>

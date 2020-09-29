@@ -6,18 +6,17 @@ import ApplicationRoute from "../components/ApplicationRouter"
 
 import ApplicationLayout from "../components/Layouts/applicationLayout"
 import LoginLayout from "../components/Layouts/loginLayout"
-import Login from "../views/Login";
 
 const Routers = () => {
     return (
         <Router>
             <Switch>
 
-                <ApplicationRoute path="/login"
-                                  layout={LoginLayout}
-                                  lazyPath={'Login'}
-                                  routeProtection={false}/>
-
+               <ApplicationRoute
+                  path="/login"
+                  layout={LoginLayout}
+                  lazyPath={'Login'}
+                  routeProtection={false}/>
                 <ApplicationRoute
                     path="/builds"
                     layout={ApplicationLayout}

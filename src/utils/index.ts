@@ -1,3 +1,4 @@
+import {reactEnv} from "../statics/ApplicationConst";
 
 const ApplicationUtils = {
 
@@ -19,12 +20,15 @@ const ApplicationUtils = {
             let index = file[i].name.lastIndexOf(".");
             let ext = file[i].name.slice(index + 1, file[i].name.length);
             let found = accepted.find(item => {
-                return item == ext;
+                return item === ext;
             });
             if (!found) {
                 return false;
             }
         }
+    },
+    getEnvironmentVariable: (key: string): any => {
+        return process.env[reactEnv + key]
     },
     emailValidator: (email: string) => {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -63,4 +67,4 @@ const ApplicationUtils = {
 
 }
 
-export { ApplicationUtils }
+export {ApplicationUtils}

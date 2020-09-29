@@ -1,18 +1,36 @@
-import React, { ReactNode } from "react"
-
-interface PropTypes{
-    children:ReactNode
+import React, {ReactNode} from "react"
+import {Card, Layout,Image} from "antd";
+import './loginLayout.scss'
+import  Logo from "../../assets/image/logo.png"
+interface PropTypes {
+    children: ReactNode
 }
-const LoginLayout=(props:PropTypes)=>{
 
-    return(
-        <div>
+const LoginLayout = (props: PropTypes) => {
+    const [random, setRandom] = React.useState();
+    return (
+        <>
+        <div className="loginWrapper">
 
-            <h1>Login Layoutuyum</h1>
-            <div>
-                {props.children}
-            </div>
+            <Layout  className={"loginLayout"}>
+                <div className="loginCard p20">
+                    <div className="companyLogo">
+                        <Image
+                            width={200}
+                            height={100}
+                            src={Logo}
+                        />
+                    </div>
+                    <div className="loginCardBody">
+                        {props.children}
+                    </div>
+                </div>
+
+            </Layout>
         </div>
+
+
+        </>
     )
 
 }

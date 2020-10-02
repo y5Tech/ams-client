@@ -6,6 +6,8 @@ import {
 } from '@ant-design/icons';
 import RouterModel from "../Models/RouterConst.model";
 import DynamicRouteModel from "../Models/DynamicRoute.model";
+import applicationLayout from "../components/Layouts/applicationLayout";
+import loginLayout from "../components/Layouts/loginLayout";
 
 const ApplicationRouter: Array<RouterModel> = [
     {
@@ -45,19 +47,24 @@ const DynamicRouter: Array<DynamicRouteModel> = [
         exact: false,
         importPath: "Builds",
         path: "/builds",
-        routeProtection: true
+        routeProtection: true,
+        layout:applicationLayout
     },
 
     {
         exact: false,
         importPath: "Login",
         path: "/Login",
-        routeProtection: false
+        routeProtection: false,
+        layout:applicationLayout
+
     }, {
         exact: true,
         importPath: "Dashboard",
         path: "/",
-        routeProtection: true
+        routeProtection: true,
+        layout:loginLayout
+
     },
 ]
 export {ApplicationRouter, DynamicRouter}

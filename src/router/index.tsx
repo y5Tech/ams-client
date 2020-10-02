@@ -3,16 +3,27 @@ import {BrowserRouter as Router, Switch} from 'react-router-dom'
 
 //CustomRoute
 import ApplicationRoute from "../components/ApplicationRouter"
+import { DynamicRouter } from './routerConst'
 
-import ApplicationLayout from "../components/Layouts/applicationLayout"
-import LoginLayout from "../components/Layouts/loginLayout"
+
 
 const Routers = () => {
     return (
         <Router>
             <Switch>
 
-               <ApplicationRoute
+
+
+                    {DynamicRouter.map((routeItem,index)=>{
+                        return(
+                            <ApplicationRoute
+                            path={routeItem.path}
+                            layout={routeItem.layout}
+                            lazyPath={routeItem.importPath}
+                            routeProtection={routeItem.routeProtection}/>
+                        )
+                    })}
+               {/* <ApplicationRoute
                   path="/login"
                   layout={LoginLayout}
                   lazyPath={'Login'}
@@ -30,7 +41,7 @@ const Routers = () => {
                     routeProtection={true}
                     lazyPath={'Dashboard'}
 
-                />
+                /> */}
 
 
             </Switch>

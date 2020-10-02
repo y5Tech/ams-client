@@ -4,5 +4,6 @@ export default interface DynamicRouteModel{
     path:string
     exact?:boolean
     routeProtection:boolean
-    importPath:string
+    importPath:string,
+    layout:ReactNode
 }

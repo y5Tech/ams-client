@@ -56,7 +56,7 @@ const DynamicRouter: Array<DynamicRouteModel> = [
         importPath: "Login",
         path: "/Login",
         routeProtection: false,
-        layout:applicationLayout
+        layout:loginLayout
 
     }, {
         exact: true,

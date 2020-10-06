@@ -63,7 +63,7 @@ const DynamicRouter: Array<DynamicRouteModel> = [
         importPath: "Dashboard",
         path: "/",
         routeProtection: true,
-        layout:loginLayout
+        layout:applicationLayout
 
     },
 ]

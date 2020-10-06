@@ -5,17 +5,17 @@ import './styles.scss'
 import {FormattedMessage} from "react-intl";
 import LoginModel from "../../ParameterModels/onLoginParameters.model";
 import {useApplicationState} from "../../context/Application/store";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+    const history=useHistory();
     const [state, {onLogin}] = useApplicationState()
     const [loading, setLoading] = useState(false)
     const onFinish = async (loginModel: LoginModel) => {
-        debugger
         setLoading(true)
         const result = await onLogin(loginModel)
+        history.push('/')
         setLoading(false)
-        console.log("rs", result)
-        debugger
     };
 
     const onFinishFailed = (errorInfo: any) => {

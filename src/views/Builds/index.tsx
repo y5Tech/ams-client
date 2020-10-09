@@ -1,26 +1,40 @@
-import React from "react"
-import {FormattedMessage} from 'react-intl';
+import React, { lazy, Suspense, useEffect } from "react"
+import { FormattedMessage } from 'react-intl';
 import {
-    BrowserRouter,
     Switch,
     Route,
-    useRouteMatch
+    useRouteMatch,
+    Redirect
 } from "react-router-dom";
-import AddBuilds from "./pages/addBuilds";
-import {useApplicationState} from "../../context/Application/store";
+import { useApplicationState } from "../../context/Application/store";
+import BallLoader from "../../components/BallLoader";
 
 const Builds = () => {
-    let {path} = useRouteMatch();
+    let { path } = useRouteMatch();
+    console.log("path", path)
+    useEffect(()=>{
+            if(path==="/builds"){
+                <Redirect
+                to={{
+                    pathname: "/list",
+                }}
+            /> 
+            }
+    },[])
+    const lazyComponent = (path: string) => {
+        return lazy(() => import(`./pages/${path}`))
+    }
     return (
         <>
 
-            <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
-                Ben bir binalar sayfasıyım selam  {" "}
-                <FormattedMessage id={"applicationName"}/>
-
-                <Switch>
-                    <Route exact path={"/builds/add"} component={AddBuilds}/>
-                </Switch>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                <Suspense fallback={<BallLoader />}>
+                    <Switch>
+                        <Route exact path={path + "/add"} component={lazyComponent('addBuilds')} />
+                        <Route exact path={path + "/list"} component={lazyComponent('buildsList')} />
+                        <Route render={() => <Redirect to={path+'/list'} />} />
+                    </Switch>
+                </Suspense>
 
             </div>
 

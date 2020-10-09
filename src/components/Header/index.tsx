@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import  './styles.scss'
 import {Layout, Tabs} from 'antd';
 
@@ -8,6 +8,7 @@ import {DownOutlined} from '@ant-design/icons';
 import {languageOptions} from "../../statics/ApplicationConst";
 import {useApplicationState} from "../../context/Application/store";
 import useLocalStorage from "../../customHooks/useLocalStorage";
+import { FormattedMessage } from "react-intl";
 
 const {Header} = Layout;
 const {TabPane} = Tabs;
@@ -42,11 +43,23 @@ const menu = (
 
 const AppHeader = () => {
     const [state, {setLanguage}] = useApplicationState()
-    const {setLocalStorage} = useLocalStorage()
+    const {setLocalStorage,getLocalStorage} = useLocalStorage()
     const changeLanguage = (language: string) => {
         setLanguage(language)
         setLocalStorage("language", language)
     }
+    const getUserFullName=useMemo(()=>{
+        if(state.user.firstName!==""){
+            return state.user.firstName+ " " +state.user.lastName
+        }else {
+                const user=getLocalStorage('user')
+                if(user!==null && user!==undefined){
+                        return user
+                }else{
+                    return <FormattedMessage id={"headerUser"}/>
+                }
+        }   
+    },[]) 
     return (
         <>
 
@@ -69,7 +82,7 @@ const AppHeader = () => {
                         <HeaderDropdown overlay={menu}>
                             <div className="header-dropdown-link-container">
                                 <a className="ant-dropdown-link textCapitalaze" onClick={e => e.preventDefault()}>
-                                    Yasin Efem Dalkılıç <DownOutlined/>
+                                  {getUserFullName}<DownOutlined/>
                                 </a>
                             </div>
                         </HeaderDropdown>

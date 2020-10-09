@@ -23,7 +23,7 @@ const Login = () => {
     };
     return (
         <>
-            <ApplicationHeader title="Y5 Tech Giriş"/>
+            <ApplicationHeader title={"Login"}/>
             <div style={{width: "100%"}}>
                 <div className="example">
                     <Spin delay={500} spinning={loading}>
@@ -34,10 +34,11 @@ const Login = () => {
                             onFinishFailed={onFinishFailed}>
                             <Form.Item
                                 label={<FormattedMessage id={"userName"}/>}
-                                name="eMail"
+                                name="email"
                                 rules={[{
                                     required: true, type: "email", message: <FormattedMessage id={"validateEmail"}/>
-                                }]}>
+                                }]}
+                                >
                                 <Input/>
 
                             </Form.Item>

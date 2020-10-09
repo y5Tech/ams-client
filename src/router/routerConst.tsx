@@ -8,27 +8,28 @@ import RouterModel from "../Models/RouterConst.model";
 import DynamicRouteModel from "../Models/DynamicRoute.model";
 import applicationLayout from "../components/Layouts/applicationLayout";
 import loginLayout from "../components/Layouts/loginLayout";
+import { FormattedMessage } from "react-intl";
 
 const ApplicationRouter: Array<RouterModel> = [
     {
         id: 1,
         route: '/',
         icon: null,
-        text: "Anasayfa", //dinamik dilden alınacak
+        text: <FormattedMessage id="homePage" />,
         children: [],
     },
     {
         id: 2,
         route: '',
         icon: null,
-        text: "Tanımlar",
+        text: <FormattedMessage id="defines" />,
         children: [
             {
                 id: 2.1,
                 icon: <PieChartOutlined/>,
-                text: "Bina Tanımla",
+                text: <FormattedMessage id="defineBuild"/>,
                 children: [],
-                route: '/builds',
+                route: '/builds/add',
             },
             {
                 id: 2.2,

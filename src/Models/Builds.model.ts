@@ -1,7 +1,8 @@
 export interface Building {
-    complexId: number;
-    managerId: number | null;
-    buildingNumber: string;
-    floorCount: number;
-    apartmentCount: number;
+    id?:number
+    complexId: number
+    managerId: number | null
+    buildingNumber: string
+    floorCount: number
+    apartmentCount: number
 }

@@ -1,10 +1,10 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import { Helmet } from "react-helmet";
 
 
 interface PropTypes {
     title: string,
-    children?: any
+    children?: ReactNode
 }
 const ApplicationHeader = (props: PropTypes) => {
     return (

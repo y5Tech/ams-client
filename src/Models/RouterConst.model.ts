@@ -4,7 +4,7 @@ export default interface RouterModel{
     id:string  | number
     route:string
     icon:ReactNode | null
-    text:string
+    text:ReactNode| string
     children:Array<RouterModel>
 
 }

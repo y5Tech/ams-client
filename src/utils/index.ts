@@ -1,6 +1,14 @@
-import {reactEnv} from "../statics/ApplicationConst";
+import { reactEnv } from "../statics/ApplicationConst";
 
 const ApplicationUtils = {
+
+    createFloorCount: () => {
+        let floorCountArray = []
+        for (let i = 1; i <= 50; i++) {
+            floorCountArray.push(i)
+        }
+        return floorCountArray
+    },
 
     parseJwt: (token: string) => {
         let base64Url = token.split(".")[1];
@@ -67,4 +75,4 @@ const ApplicationUtils = {
 
 }
 
-export {ApplicationUtils}
+export { ApplicationUtils }

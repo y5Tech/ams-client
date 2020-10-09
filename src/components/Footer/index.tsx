@@ -1,12 +1,13 @@
 import React from "react"
 import { Layout } from 'antd';
+import { FormattedMessage } from "react-intl";
 
 const { Footer } = Layout;
 
 
 const AppFooter=()=>{
         return(
-        <Footer style={{ textAlign: 'center' }}>Y5 Tech {new Date().getFullYear()}</Footer>
+        <Footer style={{ textAlign: 'center' }}><FormattedMessage id="Y5Tech"/> {new Date().getFullYear()}</Footer>
         )
 }
 

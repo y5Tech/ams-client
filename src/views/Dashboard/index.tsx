@@ -1,10 +1,13 @@
 import React from "react"
 import ApplicationHeader from "../../components/ApplicationHeader"
 import {Skeleton} from 'antd';
+import { useApplicationState } from "../../context/Application/store";
+import { FormattedMessage } from "react-intl";
 const Dashboard = () => {
+    const [state]=useApplicationState();
     return (
         <>
-            <ApplicationHeader title="Y5 Tech Anasayfa"/>
+            <ApplicationHeader title={"Ana Sayfa"}/>
             <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
                 Ben bir anasayfayım selam
                 <Skeleton loading={true} active/>

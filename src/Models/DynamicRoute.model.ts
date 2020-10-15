@@ -1,9 +1,9 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react'
 
-export default interface DynamicRouteModel{
-    path:string
-    exact?:boolean
-    routeProtection:boolean
-    importPath:string,
-    layout:ReactNode
+export default interface DynamicRouteModel {
+  path: string
+  exact?: boolean
+  routeProtection: boolean
+  importPath: string
+  layout: ReactNode
 }

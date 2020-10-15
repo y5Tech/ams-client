@@ -1,3 +1,1 @@
-export interface Complex{
-    
-}
+export interface Complex {}

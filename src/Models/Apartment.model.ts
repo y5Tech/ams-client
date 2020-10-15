@@ -1,3 +1,1 @@
-export interface Apartment{
-
-}
+export interface Apartment {}

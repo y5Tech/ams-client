@@ -1,11 +1,7 @@
-import React from "react"
+import React from 'react'
 
-
-
-const Logo=()=>{
-    return(
-        <div className="logo" />
-    )
+const Logo = () => {
+  return <div className="logo" />
 }
 
-export default  React.memo(Logo)
+export default React.memo(Logo)

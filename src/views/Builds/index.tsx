@@ -6,7 +6,6 @@ import BallLoader from '../../components/BallLoader'
 
 const Builds = () => {
   let { path } = useRouteMatch()
-  console.log('path', path)
   useEffect(() => {
     if (path === '/builds') {
       const redirect = () => <Redirect

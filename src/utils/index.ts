@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { reactEnv } from '../statics/ApplicationConst'
-
+import {  notification } from 'antd';
 const ApplicationUtils = {
   createFloorCount: () => {
     let floorCountArray = []
@@ -10,6 +10,38 @@ const ApplicationUtils = {
     return floorCountArray
   },
 
+  openNotification:(type:string,title:string,content:any,options?:object)=>{  
+    switch(type){
+      case "info":
+      notification["info"]({
+        message:title,
+        description:content,
+        ...options
+      })
+      return;
+      case "success":
+        notification["success"]({
+          message:title,
+          description:content,
+          ...options
+        })
+        return
+        case "error":
+          notification["error"]({
+            message:title,
+            description:content,
+            ...options
+          })
+          return
+          case "warning":
+            notification["warning"]({
+              message:title,
+              description:content,
+              ...options
+            })
+            return
+    }
+  },
   parseJwt: (token: string) => {
     let base64Url = token.split('.')[1]
     let base64 = decodeURIComponent(

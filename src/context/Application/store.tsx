@@ -5,20 +5,15 @@ import Login from '../../ParameterModels/onLoginParameters.model'
 import request from '../../request'
 import { User } from '../../Models/User.model'
 import useLocalStorage from '../../customHooks/useLocalStorage'
+
 import { ApplicationUtils } from '../../utils'
 // interfaces
-export interface IStore {
-  locale: string
-  token: string
-  user: User
-}
+import { initState } from './initialState'
+import IActions from './actions.model'
+import IStore from './store.model'
 
-interface IActions {
-  setLanguage(locale: string): any
-  onLogin(login: Login): Promise<any>,
-  onLogout(): void,
-  setUser(token: string): void
-}
+
+
 
 let initialState: any
 // context
@@ -26,18 +21,8 @@ const ApplicationContext = createContext<[IStore, IActions]>(initialState)
 
 const Store = ({ children }: any) => {
   const { setLocalStorage, removeLocalStorage, getLocalStorage } = useLocalStorage()
-  const initialState: IStore = {
-    locale: 'tr',
-    token: '',
-    user: {
-      email: '',
-      name: '',
-      lastName: '',
-      gender: '',
-      complexId: ''
-    }
-  }
-  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const [state, dispatch] = useReducer(reducer, initState)
   const actions: IActions = {
     setLanguage(locale: string): any {
       dispatch({ type: SET_LANGUAGE, payload: locale })

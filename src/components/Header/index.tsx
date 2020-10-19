@@ -57,7 +57,7 @@ const AppHeader = () => {
         return <FormattedMessage id={'headerUser'} />
       }
     }
-  }, [getLocalStorage, state.user.lastName, state.user.name])
+  }, [state.user.lastName, state.user.name])
 
   return (
     <>

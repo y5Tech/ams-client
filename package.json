@@ -25,7 +25,6 @@
     "global": "^4.4.0",
     "i18next": "^19.7.0",
     "node-sass": "^4.14.1",
-    "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
@@ -59,5 +58,9 @@
   },
   "engines": {
     "node": "12.x"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
   }
 }

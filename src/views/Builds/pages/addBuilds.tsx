@@ -1,8 +1,8 @@
-import React, { memo, useState } from 'react'
-import { Form, Input, Button, Select } from 'antd'
-import { FormattedMessage } from 'react-intl'
-import { ApplicationUtils } from '../../../utils'
-import { Building } from '../../../Models/Builds.model'
+import React, { memo, useState } from "react"
+import { Form, Input, Button, Select } from "antd"
+import { FormattedMessage } from "react-intl"
+import { ApplicationUtils } from "../../../utils"
+import { Building } from "../../../Models/Builds.model"
 const { Option } = Select
 const AddBuilds = () => {
   const [form] = Form.useForm()
@@ -20,8 +20,12 @@ const AddBuilds = () => {
     debugger
   }
 
+
+
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
+    ApplicationUtils.openNotification("info","Merjaba","Selamlarrr");
+
+    console.log("Failed:", errorInfo)
   }
   return (
     <Form
@@ -33,23 +37,23 @@ const AddBuilds = () => {
       requiredMark={true}
     >
       <Form.Item
-        label={<FormattedMessage id={'buildingNo'} />}
+        label={<FormattedMessage id={"buildingNo"} />}
         name="buildingNumber"
         rules={[
           {
             required: true,
-            type: 'string',
-            message: 'Bina Numarası Giriniz'
+            type: "string",
+            message: "Bina Numarası Giriniz"
           }
         ]}
       >
-        <Input placeholder={'Bina Numarası Giriniz.'} />
+        <Input placeholder={"Bina Numarası Giriniz."} />
       </Form.Item>
       <Form.Item
         name="floorCount"
         label={<FormattedMessage id="floorCount" />}
         hasFeedback
-        rules={[{ required: true, message: 'Kat Sayısı Giriniz.' }]}
+        rules={[{ required: true, message: "Kat Sayısı Giriniz." }]}
       >
         <Select placeholder={<FormattedMessage id="floorCountPlaceHolder" />}>
           {renderFloorCountOption()}
@@ -59,7 +63,7 @@ const AddBuilds = () => {
         name="apartmentCount"
         label={<FormattedMessage id="apartmentCount" />}
         hasFeedback
-        rules={[{ required: true, message: 'Apartman Sayısı Giriniz' }]}
+        rules={[{ required: true, message: "Apartman Sayısı Giriniz" }]}
       >
         <Select
           placeholder={<FormattedMessage id="apartmentCountPlaceHolder" />}

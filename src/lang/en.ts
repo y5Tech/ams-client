@@ -20,7 +20,9 @@ const en = {
   save: 'Save',
   homePage: 'Home Page',
   Y5Tech: 'Y5 Tech',
-  defines: 'Defines'
+  defines: 'Defines',
+  warning:"Warning"
+
 }
 
 export default en

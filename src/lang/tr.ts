@@ -19,7 +19,8 @@ const tr = {
   save: 'Kaydet',
   homePage: 'Ana Sayfa',
   Y5Tech: 'Y5 Teknoloji',
-  defines: 'Tanımlar'
+  defines: 'Tanımlar',
+  warning:"Uyarı"
 }
 
 export default tr

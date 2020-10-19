@@ -23,7 +23,7 @@ const AddBuilds = () => {
 
 
   const onFinishFailed = (errorInfo: any) => {
-    ApplicationUtils.openNotification("info","Merjaba","Selamlarrr");
+    ApplicationUtils.openNotification("danger","Uyarı","Selamlarrr");
 
     console.log("Failed:", errorInfo)
   }

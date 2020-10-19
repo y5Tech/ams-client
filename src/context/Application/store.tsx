@@ -51,13 +51,7 @@ const Store = ({ children }: any) => {
     },
     onLogout() {
       removeLocalStorage('token');
-      dispatch({type: SET_USER, payload: {
-        email: '',
-        name: '',
-        lastName: '',
-        gender: '',
-        complexId: ''
-      }});
+      dispatch({type: SET_USER, payload:initState.user});
     },
     setUser(token: string) {
       if(token){

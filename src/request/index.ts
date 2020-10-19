@@ -2,9 +2,26 @@ import axios from 'axios'
 import { ApplicationUtils } from '../utils'
 
 const baseUrl = ApplicationUtils.getEnvironmentVariable('API')
-const defaultHeader = {
-  'Content-Type': 'application/json'
+const token=localStorage.getItem("token")
+let defaultHeader = {}
+if (token !== undefined && token !== null) {
+  try {
+    let validToken = ApplicationUtils.parseJwt(token)
+    defaultHeader={
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer"+token
+    };
+  } catch (e) {
+  }
+  defaultHeader={
+    'Content-Type': 'application/json',
+  };
+} else {
+  defaultHeader={
+    'Content-Type': 'application/json',
+  };
 }
+
 const request = {
   /*  headers: {
           Authorization: 'Bearer ' + varToken

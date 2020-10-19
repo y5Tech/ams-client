@@ -1,8 +1,9 @@
-import { SET_LANGUAGE, SET_USER, SET_TOKEN } from './actionTypes'
+import { IStore } from './store';
+import { SET_LANGUAGE, SET_TOKEN, SET_USER , DispatchType} from './actionTypes'
 
 export default function Reducers(
-  state: any,
-  action: { payload: any; type: string }
+  state: IStore,
+  action: { payload: any; type: DispatchType }
 ) {
   switch (action.type) {
     case SET_LANGUAGE:

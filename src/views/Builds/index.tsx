@@ -9,11 +9,12 @@ const Builds = () => {
   console.log('path', path)
   useEffect(() => {
     if (path === '/builds') {
-      ;<Redirect
+      const redirect = () => <Redirect
         to={{
           pathname: '/list'
         }}
-      />
+      />;
+      redirect();
     }
   }, [])
   const lazyComponent = (path: string) => {

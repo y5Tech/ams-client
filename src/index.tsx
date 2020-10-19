@@ -6,12 +6,11 @@ import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
 import ApplicationProvider from './context/Application/store'
 
+console.log(process.env.REACT_APP_API)
 ReactDOM.render(
-  <React.StrictMode>
     <ApplicationProvider>
       <App />
-    </ApplicationProvider>
-  </React.StrictMode>,
+    </ApplicationProvider>,
   document.getElementById('root')
 )
 

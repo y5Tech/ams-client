@@ -1,41 +1,54 @@
-import React, { useMemo } from 'react'
-import './styles.scss'
-import { Layout, Tabs } from 'antd'
-
-import { Menu } from 'antd'
-import HeaderDropdown from '../HeaderDropdown'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { Layout, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons'
+
+import HeaderDropdown from '../HeaderDropdown'
 import { languageOptions } from '../../statics/ApplicationConst'
 import { useApplicationState } from '../../context/Application/store'
 import useLocalStorage from '../../customHooks/useLocalStorage'
-import { FormattedMessage } from 'react-intl'
 
-const { Header } = Layout
-const { TabPane } = Tabs
-const menu = (
-  <Menu>
-    <Menu.Item></Menu.Item>
-    <Tabs defaultActiveKey="2">
-      <TabPane tab={<span>Tab 1</span>} key="1">
-        Tab 1
-      </TabPane>
-      <TabPane tab={<span>Tab 2</span>} key="2">
-        Tab 2
-      </TabPane>
-    </Tabs>
-  </Menu>
-)
+import './styles.scss'
+
+const { Header } = Layout;
 
 const AppHeader = () => {
-  const [state, { setLanguage }] = useApplicationState()
+
+  const history = useHistory();
+
+  const [state, { setLanguage,onLogout }] = useApplicationState()
   const { setLocalStorage, getLocalStorage } = useLocalStorage()
+
   const changeLanguage = (language: string) => {
     setLanguage(language)
     setLocalStorage('language', language)
   }
+
+  const logout = () => {
+    onLogout();
+    history.push('/login');
+  }
+
+  const menu = (
+    <Menu>
+      <Menu.Item></Menu.Item>
+      <Menu.Item onClick={logout}>Çıkış Yap</Menu.Item>
+      {/* <Tabs defaultActiveKey="2">
+        <TabPane tab={<span>Tab 1</span>} key="1">
+          Tab 1
+        </TabPane>
+        <TabPane tab={<span>Tab 2</span>} key="2">
+          Tab 2
+        </TabPane>
+      </Tabs> */}
+    </Menu>
+  )
+
   const getUserFullName = useMemo(() => {
-    if (state.user.firstName !== '') {
-      return state.user.firstName + ' ' + state.user.lastName
+    if (state.user.name !== '') {
+      return state.user.name + ' ' + state.user.lastName
     } else {
       const user = getLocalStorage('user')
       if (user !== null && user !== undefined) {
@@ -44,7 +57,8 @@ const AppHeader = () => {
         return <FormattedMessage id={'headerUser'} />
       }
     }
-  }, [])
+  }, [getLocalStorage, state.user.lastName, state.user.name])
+
   return (
     <>
       <Header className="site-layout-background" style={{ padding: 0 }}>

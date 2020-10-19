@@ -7,6 +7,9 @@ const useLocalStorage = () => {
   const setLocalStorage = (key: string, value: any) => {
     localStorage.setItem(key, value)
   }
-  return { getLocalStorage, setLocalStorage }
+  const removeLocalStorage = (key: string) => {
+    localStorage.removeItem(key);
+  }
+  return { getLocalStorage, setLocalStorage, removeLocalStorage }
 }
 export default useLocalStorage

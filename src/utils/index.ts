@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { reactEnv } from '../statics/ApplicationConst'
 
 const ApplicationUtils = {

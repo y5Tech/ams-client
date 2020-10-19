@@ -1,12 +1,13 @@
 import React, { useReducer, useContext, createContext } from 'react'
 import reducer from './reducers'
-import { SET_LANGUAGE, SET_TOKEN, SET_USER } from './actionTypes'
+import { SET_LANGUAGE, SET_USER } from './actionTypes'
 import Login from '../../ParameterModels/onLoginParameters.model'
 import request from '../../request'
 import { User } from '../../Models/User.model'
 import useLocalStorage from '../../customHooks/useLocalStorage'
+import { ApplicationUtils } from '../../utils'
 // interfaces
-interface IStore {
+export interface IStore {
   locale: string
   token: string
   user: User
@@ -14,8 +15,9 @@ interface IStore {
 
 interface IActions {
   setLanguage(locale: string): any
-
-  onLogin(login: Login): Promise<any>
+  onLogin(login: Login): Promise<any>,
+  onLogout(): void,
+  setUser(token: string): void
 }
 
 let initialState: any
@@ -23,19 +25,16 @@ let initialState: any
 const ApplicationContext = createContext<[IStore, IActions]>(initialState)
 
 const Store = ({ children }: any) => {
-  const { setLocalStorage } = useLocalStorage()
+  const { setLocalStorage, removeLocalStorage, getLocalStorage } = useLocalStorage()
   const initialState: IStore = {
     locale: 'tr',
     token: '',
     user: {
-      accessToken: '',
       email: '',
-      firstName: '',
-      gender: 0,
+      name: '',
       lastName: '',
-      sessionId: 0,
-      userId: 0,
-      userRoles: []
+      gender: '',
+      complexId: ''
     }
   }
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -46,19 +45,40 @@ const Store = ({ children }: any) => {
     onLogin(login: Login): Promise<any> {
       let user: User
       return request
-        .post('User/Login', login)
+        .post('Login/Index', login)
         .then((response) => {
-          if (response.status === 200 && response.data.hasError === false) {
-            user = response.data.result
+          if (response.status === 200) return response.data
+        })
+        .then((response) => {
+          if (response.success === true) {
+            var token = response.data.token
+            user = ApplicationUtils.parseJwt(token)
             dispatch({ type: SET_USER, payload: user })
-            dispatch({ type: SET_TOKEN, payload: user.accessToken })
-            setLocalStorage('token', user.accessToken)
+            setLocalStorage('token', token)
+          } else {
+            console.log('login Error')
           }
           return response
         })
         .catch((error) => {
           debugger
         })
+    },
+    onLogout() {
+      removeLocalStorage('token');
+      dispatch({type: SET_USER, payload: {
+        email: '',
+        name: '',
+        lastName: '',
+        gender: '',
+        complexId: ''
+      }});
+    },
+    setUser(token: string) {
+      if(token){
+        var user = ApplicationUtils.parseJwt(token);
+        dispatch({ type: SET_USER, payload: user })
+      }
     }
   }
 

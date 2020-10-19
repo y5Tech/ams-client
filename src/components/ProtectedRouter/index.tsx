@@ -2,9 +2,11 @@ import { Redirect, Route } from 'react-router-dom'
 import React, { useContext, useEffect, useState } from 'react'
 import { ApplicationUtils } from '../../utils'
 import useLocalStorage from '../../customHooks/useLocalStorage'
+import { useApplicationState } from '../../context/Application/store'
 
 const ProtectedRoute = ({ component: Component, ...rest }: any) => {
   const { getLocalStorage } = useLocalStorage()
+  const [state,{setUser}] = useApplicationState();
 
   const [isAuth, setIsAuth] = useState(false)
   const [authDone, setAuthDone] = useState('')
@@ -14,6 +16,7 @@ const ProtectedRoute = ({ component: Component, ...rest }: any) => {
     if (token !== undefined && token !== null) {
       try {
         let validToken = ApplicationUtils.parseJwt(token)
+        setUser(token);
         setAuthDone('ok')
         setIsAuth(true)
       } catch (e) {

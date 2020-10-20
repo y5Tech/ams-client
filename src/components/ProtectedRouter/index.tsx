@@ -3,10 +3,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ApplicationUtils } from '../../utils'
 import useLocalStorage from '../../customHooks/useLocalStorage'
 import { useApplicationState } from '../../context/Application/store'
+import { useAppActions } from '../../context/App/store'
 
 const ProtectedRoute = ({ component: Component, ...rest }: any) => {
   const { getLocalStorage } = useLocalStorage()
-  const [state,{setUser}] = useApplicationState();
+  //const [state,{setUser}] = useApplicationState();
+  const {setUser}=useAppActions()
 
   const [isAuth, setIsAuth] = useState(false)
   const [authDone, setAuthDone] = useState('')

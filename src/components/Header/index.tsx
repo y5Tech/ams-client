@@ -11,14 +11,16 @@ import { useApplicationState } from '../../context/Application/store'
 import useLocalStorage from '../../customHooks/useLocalStorage'
 
 import './styles.scss'
+import { useAppState, useAppActions } from '../../context/App/store';
 
 const { Header } = Layout;
 
 const AppHeader = () => {
 
   const history = useHistory();
-
-  const [state, { setLanguage,onLogout }] = useApplicationState()
+  const {user,locale}=useAppState()
+  const {setLanguage,onLogout}=useAppActions();
+  //const [state, { setLanguage,onLogout }] = useApplicationState()
   const { setLocalStorage, getLocalStorage } = useLocalStorage()
 
   const changeLanguage = (language: string) => {
@@ -46,18 +48,18 @@ const AppHeader = () => {
     </Menu>
   )
 
-  const getUserFullName = useMemo(() => {
-    if (state.user.name !== '') {
-      return state.user.name + ' ' + state.user.lastName
-    } else {
-      const user = getLocalStorage('user')
-      if (user !== null && user !== undefined) {
-        return user
-      } else {
-        return <FormattedMessage id={'headerUser'} />
-      }
-    }
-  }, [state.user.lastName, state.user.name])
+ const getUserFullName = useMemo(() => {
+   if (user.name !== '') {
+     return user.name + ' ' + user.lastName
+   } else {
+     const user = getLocalStorage('user')
+     if (user !== null && user !== undefined) {
+       return user
+     } else {
+       return <FormattedMessage id={'headerUser'} />
+     }
+   }
+ }, [user.lastName, user.name])
 
   return (
     <>
@@ -75,7 +77,8 @@ const AppHeader = () => {
                   className="ant-dropdown-link upperCase"
                   onClick={(e) => e.preventDefault()}
                 >
-                  {state.locale} <DownOutlined />
+                 {locale} 
+                  <DownOutlined />
                 </a>
               </div>
             </HeaderDropdown>
@@ -86,7 +89,7 @@ const AppHeader = () => {
                   className="ant-dropdown-link textCapitalaze"
                   onClick={(e) => e.preventDefault()}
                 >
-                  {getUserFullName}
+                {getUserFullName} 
                   <DownOutlined />
                 </a>
               </div>

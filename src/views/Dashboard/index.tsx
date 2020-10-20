@@ -3,8 +3,8 @@ import ApplicationHeader from '../../components/ApplicationHeader'
 import { Skeleton } from 'antd'
 import { useApplicationState } from '../../context/Application/store'
 import { FormattedMessage } from 'react-intl'
+import { useAppState } from '../../context/App/store'
 const Dashboard = () => {
-  const [state] = useApplicationState()
   return (
     <>
       <ApplicationHeader title={'Ana Sayfa'} />

@@ -5,12 +5,11 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
 import ApplicationProvider from './context/Application/store'
-
-console.log(process.env.REACT_APP_API)
+import {AppProvider} from "./context/App/store"
 ReactDOM.render(
-    <ApplicationProvider>
+    <AppProvider>
       <App />
-    </ApplicationProvider>,
+    </AppProvider>,
   document.getElementById('root')
 )
 

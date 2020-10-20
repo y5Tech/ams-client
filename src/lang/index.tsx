@@ -4,6 +4,7 @@ import { useApplicationState } from '../context/Application/store'
 import tr from './tr'
 import en from './en'
 import useLocalStorage from '../customHooks/useLocalStorage'
+import { useAppState, useAppActions } from '../context/App/store'
 /* Define your translations */
 
 interface PropTypes {
@@ -16,7 +17,9 @@ const LanguageProvider = (props: PropTypes) => {
     locale: 'tr',
     messages: tr
   }
-  const [state, { setLanguage }] = useApplicationState()
+  const {locale}=useAppState();
+  const {setLanguage}=useAppActions();
+  //const [state, { setLanguage }] = useApplicationState()
   const [i18Lang, seti18Lang] = useState(defaulti18)
   useLayoutEffect(() => {
     let language
@@ -27,10 +30,10 @@ const LanguageProvider = (props: PropTypes) => {
       language = getLanguage(getLocalStorage('language'))
       setLanguage(getLocalStorage('language') as string)
     } else {
-      language = getLanguage(state.locale)
+      language = getLanguage(locale)
     }
     seti18Lang(language)
-  }, [state.locale])
+  }, [locale])
 
   const getLanguage = (key: string | null) => {
     let i18Lang = 'tr'

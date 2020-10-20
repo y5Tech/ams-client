@@ -6,10 +6,12 @@ import { FormattedMessage } from 'react-intl'
 import LoginModel from '../../ParameterModels/onLoginParameters.model'
 import { useApplicationState } from '../../context/Application/store'
 import { useHistory } from 'react-router-dom'
+import { useAppActions, useAppState } from '../../context/App/store'
 
 const Login = () => {
   const history = useHistory()
-  const [state, { onLogin }] = useApplicationState()
+  const {onLogin}=useAppActions();
+  //const [state, { onLogin }] = useApplicationState()
   const [loading, setLoading] = useState(false)
   const onFinish = async (loginModel: LoginModel) => {
     setLoading(true)

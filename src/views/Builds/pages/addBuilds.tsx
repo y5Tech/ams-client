@@ -3,13 +3,10 @@ import { Form, Input, Button, Select } from "antd"
 import { FormattedMessage } from "react-intl"
 import { ApplicationUtils } from "../../../utils"
 import { Building } from "../../../Models/Builds.model"
-import { useCountState, useCountDispatch } from "../../../context/Application/test"
 import { useAppState, useAppActions } from "../../../context/App/store"
 const { Option } = Select
 const AddBuilds = () => {
   const [form] = Form.useForm()
-  const {count} = useCountState()
-  const dispatch = useCountDispatch()
 
   const renderFloorCountOption = () => {
     return ApplicationUtils.createFloorCount().map((floorCount, index) => {
@@ -32,7 +29,6 @@ const AddBuilds = () => {
   }
   return (
     <>
-    {count}<br/>
     <button onClick={()=>{
     }}>tıkla</button>
     <Form
